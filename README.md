@@ -52,7 +52,7 @@ python -m collector.main --list-devices
 python -m collector.main --host WINDOWS_IP --device-id macbook-air --device DEVICE_INDEX
 ```
 
-Replace `WINDOWS_IP` with the backend host's private IPv4 address and `DEVICE_INDEX` with the microphone index. Both devices must be reachable on the same trusted network. See [MACOS_SETUP.md](MACOS_SETUP.md) for additional details.
+Replace `WINDOWS_IP` with the backend host's private IPv4 address and `DEVICE_INDEX` with the microphone index. Both devices must be reachable on the same trusted network. 
 
 ### API
 
