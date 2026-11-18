@@ -36,10 +36,10 @@ Start the backend on the Windows or Linux host with Docker Desktop/Engine:
 
 ```bash
 cp .env.example .env
-docker compose up --build -d
+docker compose --profile demo up --build -d
 ```
 
-On PowerShell, use `Copy-Item .env.example .env` instead of `cp`. The dashboard is available at `http://localhost:8000`, and OpenAPI documentation at `http://localhost:8000/docs`.
+On PowerShell, use `Copy-Item .env.example .env` instead of `cp`. The dashboard is available at `http://localhost:8000`, and OpenAPI documentation at `http://localhost:8000/docs`. The `demo` profile starts a synthetic MQTT publisher, so the dashboard receives data without a microphone or a second computer. Omit `--profile demo` when using the physical collector below.
 
 Install and run the collector on macOS with Python 3.13:
 
@@ -67,5 +67,7 @@ Replace `WINDOWS_IP` with the backend host's private IPv4 address and `DEVICE_IN
 python -m pip install ".[test]"
 pytest
 ```
+
+The GitHub Actions workflow runs the test suite on every push and pull request. The tests cover audio analysis, the synthetic demo payload and the ingestion schema.
 
 The `.env` file, virtual environments, caches, and local IDE settings are excluded from Git. PostgreSQL data persists in the Docker volume until `docker compose down -v` is used.

@@ -38,6 +38,17 @@ services:
         condition: service_started
     restart: unless-stopped
 
+  demo-publisher:
+    build: .
+    command: ["python", "-m", "collector.demo", "--host", "mosquitto", "--device-id", "demo-sensor"]
+    environment:
+      PYTHONUNBUFFERED: "1"
+    depends_on:
+      mosquitto:
+        condition: service_started
+    profiles: ["demo"]
+    restart: unless-stopped
+
 volumes:
   postgres_data:
 
